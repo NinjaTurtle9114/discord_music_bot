@@ -104,8 +104,8 @@ class MusicCog(commands.Cog):
             self.is_paused = True
             self.vc.paused()
         elif self.is_paused:
-            self.is_paused = True
-            self.is_playing = False
+            self.is_paused = False
+            self.is_playing = True
             self.vc.resume()
 
     # currently not working
