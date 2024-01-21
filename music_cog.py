@@ -95,7 +95,6 @@ class MusicCog(commands.Cog):
                 if self.is_playing is False:
                     await self.play_song(ctx)
 
-    # currently not working
     @commands.command(name="pause", aliases=["f", "fuckoff"],
                       help="Pause selected song from youtube")
     async def pause(self, ctx, *args):
@@ -105,7 +104,6 @@ class MusicCog(commands.Cog):
         else:
             await ctx.send("```Not playing anything right now```")
 
-    # currently not working
     @commands.command(name="resume", aliases=["r"], help="Resumes playing current song")
     async def resume(self, ctx, *args):
         voice_client = ctx.message.guild.voice_client
