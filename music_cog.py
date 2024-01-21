@@ -99,22 +99,20 @@ class MusicCog(commands.Cog):
     @commands.command(name="pause", aliases=["f", "fuckoff"],
                       help="Pause selected song from youtube")
     async def pause(self, ctx, *args):
-        if self.is_playing:
-            self.is_playing = False
-            self.is_paused = True
-            self.vc.paused()
-        elif self.is_paused:
-            self.is_paused = False
-            self.is_playing = True
-            self.vc.resume()
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_playing():
+            await ctx.pause()
+        else:
+            await ctx.send("```Not playing anything right now```")
 
     # currently not working
     @commands.command(name="resume", aliases=["r"], help="Resumes playing current song")
     async def resume(self, ctx, *args):
-        if self.is_paused:
-            self.is_playing = True
-            self.is_paused = False
-            self.vc.resume()
+        voice_client = ctx.message.guild.voice_client
+        if voice_client.is_paused():
+            await voice_client.resume()
+        else:
+            await ctx.send("```Not playing anything right now```")
 
     @commands.command(name="skip", aliases=["s"], help="Skip selected song from youtube")
     async def skip(self, ctx):
